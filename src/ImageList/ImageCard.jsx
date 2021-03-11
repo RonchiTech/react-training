@@ -6,6 +6,7 @@ class ImageCard extends Component {
     this.imageRef = createRef();
     this.state = {
       spans: 0,
+      isLoading: false,
     };
   }
   componentDidMount() {
@@ -16,15 +17,16 @@ class ImageCard extends Component {
   setSpan() {
     const height = this.imageRef.current.clientHeight;
     const spans = Math.ceil(height / 10 + 1);
-    this.setState({spans});
+    this.setState({ spans });
   }
   render() {
     const {
       description,
       urls: { regular },
     } = this.props.image;
+
     return (
-      <div style={{gridRowEnd: `span ${this.state.spans}`}}>
+      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
         <img ref={this.imageRef} src={regular} alt={description} />
       </div>
     );
