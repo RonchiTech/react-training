@@ -4,15 +4,19 @@ class SearchBar extends Component {
   state = {
     input: '',
   };
-  onInputChange(input) {
+  onInputChange(e) {
     this.setState({
-      input: input.target.value,
+      input: e.target.value,
     });
+  }
+  onFormSubmit(e) {
+    e.preventDefault();
+    this.props.onFormSubmit(this.state.input);
   }
   render() {
     return (
       <div className="search-bar ui segment">
-        <form className="ui form">
+        <form className="ui form" onSubmit={(e) => this.onFormSubmit(e)}>
           <div className="field">
             <label>Video Search</label>
             <input
