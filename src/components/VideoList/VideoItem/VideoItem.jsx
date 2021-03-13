@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './VideoItems.scss';
 const VideoItem = ({
   vid: {
     snippet: {
@@ -9,11 +9,15 @@ const VideoItem = ({
       },
     },
   },
+  vid,
+  onVideoSelect,
 }) => {
   return (
-    <div>
-      <img src={url} alt={title} />
-      <p>{title}</p>
+    <div className="video-item item" onClick={() => onVideoSelect(vid)}>
+      <img className="ui image" src={url} alt={title} />
+      <div className="content">
+        <div className="header">{title}</div>
+      </div>
     </div>
   );
 };
