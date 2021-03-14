@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Dropdown = ({ options, message, selected, onSelectedChange }) => {
   const [isActive, setIsActive] = useState(false);
+  const ref = useRef();
+  useEffect(() => {
+    document.body.addEventListener('click', (event) => {
+      if (ref.current && ref.current.contains(event.target)) {
+        return;
+      }
+      setIsActive(false);
+    });
+  }, []);
+
   const renderedOptions = options.map((option, index) => {
     if (option.value === selected.value) {
       return null;
@@ -16,8 +26,9 @@ const Dropdown = ({ options, message, selected, onSelectedChange }) => {
       </div>
     );
   });
+
   return (
-    <div className="ui form">
+    <div className="ui form" ref={ref}>
       <div className="field">
         <label className="label">{message}</label>
         <div
