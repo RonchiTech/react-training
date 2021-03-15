@@ -4,11 +4,22 @@ import axios from 'axios';
 import { KEY } from '../../../translatekey';
 
 const Convert = ({ language, text }) => {
-  const [translation, setTranslation] = useState([]);
+  const [translation, setTranslation] = useState('');
+  const [debounceText, setDebounceText] = useState(text);
+
+  useEffect(() => {
+    const onTextChange = setTimeout(() => {
+      setDebounceText(text);
+    }, 700);
+    return () =>{
+        clearTimeout(onTextChange);
+    }
+  }, [text]);
+
   useEffect(() => {
     const translateApi = async () => {
-      if (!text) {
-        return;
+      if (!debounceText) {
+        return setTranslation('');
       }
 
       const {
@@ -20,7 +31,7 @@ const Convert = ({ language, text }) => {
         {},
         {
           params: {
-            q: text,
+            q: debounceText,
             target: language.value,
             key: KEY,
           },
@@ -29,13 +40,13 @@ const Convert = ({ language, text }) => {
       setTranslation(translations[0].translatedText);
     };
 
-    const searchTime = setTimeout(() => {
-      translateApi();
-    }, 700);
-    return () => {
-      clearTimeout(searchTime);
-    };
-  }, [text, language]);
+    // const searchTime = setTimeout(() => {
+    translateApi();
+    // }, 700);
+    // return () => {
+    //   clearTimeout(searchTime);
+    // };
+  }, [debounceText, language]);
   return <div>{translation}</div>;
 };
 export default Convert;
