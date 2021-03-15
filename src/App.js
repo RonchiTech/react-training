@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {  } from 'react';
 // import Accordion from './components/Accordion/Accordion'
 // import Search from './components/Search/Search'
-import Dropdown from './components/Dropdown/Dropdown';
+// import Dropdown from './components/Dropdown/Dropdown';
+import Translate from './components/Translate/Translate'
 import './App.css';
 
 // const items = [
@@ -18,28 +19,30 @@ import './App.css';
 //     content: 'You use React by creating components.',
 //   },
 // ];
-const options = [
-  {
-    label: 'The Red',
-    value: 'red',
-  },
-  {
-    label: 'The Green',
-    value: 'green',
-  },
-  {
-    label: 'The Blue',
-    value: 'blue',
-  },
-];
+// const options = [
+//   {
+//     label: 'The Red',
+//     value: 'red',
+//   },
+//   {
+//     label: 'The Green',
+//     value: 'green',
+//   },
+//   {
+//     label: 'The Blue',
+//     value: 'blue',
+//   },
+// ];
+
+
 const App = () => {
-  const [selected, setSelected] = useState(options[0]);
-  const [showDropdown, setShowDropdown] = useState(true);
+  // const [selected, setSelected] = useState(options[0]);
+  // const [showDropdown, setShowDropdown] = useState(true);
   return (
     <div>
       {/* <Accordion items={items}/> */}
       {/* <Search/> */}
-      <button onClick={() => setShowDropdown(!showDropdown)}>
+      {/* <button onClick={() => setShowDropdown(!showDropdown)}>
         Toggle Dropdown
       </button>
       {showDropdown ? (
@@ -48,7 +51,8 @@ const App = () => {
           selected={selected}
           onSelectedChange={setSelected}
         />
-      ) : null}
+      ) : null} */}
+    <Translate/>
     </div>
   );
 };

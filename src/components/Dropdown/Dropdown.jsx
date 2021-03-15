@@ -50,6 +50,7 @@ const Dropdown = ({ options, message, selected, onSelectedChange }) => {
           </div>
         </div>
       </div>
+      {/* <p>This text is {selected.label}!</p> */}
     </div>
   );
 };
