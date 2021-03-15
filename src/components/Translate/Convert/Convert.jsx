@@ -10,6 +10,7 @@ const Convert = ({ language, text }) => {
       if (!text) {
         return;
       }
+
       const {
         data: {
           data: { translations },
@@ -25,9 +26,15 @@ const Convert = ({ language, text }) => {
           },
         }
       );
-     setTranslation(translations[0].translatedText);
+      setTranslation(translations[0].translatedText);
     };
-    translateApi();
+
+    const searchTime = setTimeout(() => {
+      translateApi();
+    }, 700);
+    return () => {
+      clearTimeout(searchTime);
+    };
   }, [text, language]);
   return <div>{translation}</div>;
 };
