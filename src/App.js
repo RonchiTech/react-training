@@ -42,7 +42,9 @@ const App = () => {
           <div className="six wide column">
             <VideoList
               videos={videos}
-              onVideoSelect={(e) => setSelectedVideo(e)}
+              onVideoSelect={setSelectedVideo}
+              //equals to
+              // onVideoSelect={(e) => setSelectedVideo(e)}
             />
           </div>
         </div>
